@@ -33,3 +33,37 @@ navLinks.forEach(link => {
 
 window.addEventListener('scroll', setActiveLink);
 window.addEventListener('load', setActiveLink);
+
+
+// Mobile sidebar toggle
+const menuToggle = document.querySelector('.menu-toggle');
+const sidebar = document.querySelector('.sidebar');
+const backdrop = document.querySelector('.backdrop');
+
+function closeNav() {
+  sidebar.classList.remove('open');
+  document.body.classList.remove('nav-open');
+}
+
+function openNav() {
+  sidebar.classList.add('open');
+  document.body.classList.add('nav-open');
+}
+
+if (menuToggle && sidebar) {
+  menuToggle.addEventListener('click', () => {
+    if (sidebar.classList.contains('open')) { closeNav(); } else { openNav(); }
+  });
+}
+if (backdrop) {
+  backdrop.addEventListener('click', closeNav);
+}
+
+// Close the nav when a link is clicked (useful on mobile)
+navLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    if (window.innerWidth <= 900) {
+      closeNav();
+    }
+  });
+});
