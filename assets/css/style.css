@@ -417,3 +417,93 @@ footer {
     height: 140px;
   }
 }
+
+
+/* ===== Responsive Enhancements ===== */
+
+/* General responsive tweaks */
+img, video { max-width: 100%; height: auto; }
+section { width: min(100%, 700px); }
+.home-name { white-space: normal; }
+
+/* Mobile menu toggle button */
+.menu-toggle {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1600;
+  border: none;
+  background: #0047b3;
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(0,0,0,.15);
+  display: none; /* default hidden on desktop */
+}
+
+/* Backdrop for mobile nav */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  z-index: 1100;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease;
+}
+body.nav-open .backdrop {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Off-canvas behavior on tablets/phones */
+@media (max-width: 900px) {
+  .menu-toggle { display: inline-block; }
+
+  .sidebar {
+    width: 240px;
+    transform: translateX(-260px);
+    transition: transform .3s ease;
+    padding-top: 70px; /* space for status bars */
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .nav-links { gap: 1rem; }
+  .nav-links li a { font-size: 1rem; padding: 10px 12px; }
+
+  .content {
+    margin-left: 0;
+    padding: 70px 18px 110px; /* top padding for the menu button area */
+  }
+
+  /* Make sections edge-to-edge with comfortable padding */
+  section {
+    width: 100%;
+    padding: 28px 18px 32px;
+    border-radius: 10px;
+  }
+
+  /* Footer should not be fixed on mobile to avoid overlap */
+  footer {
+    position: static;
+    left: 0;
+    width: 100%;
+    margin-top: 24px;
+  }
+
+  /* Home tweaks */
+  .home-name { font-size: 2rem; }
+  .home-subtitle { font-size: 1rem; }
+  .home-profile-pic { width: 120px; height: 120px; }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .menu-toggle { padding: 8px 12px; border-radius: 8px; }
+  .btn { padding: 12px 18px; border-radius: 24px; }
+  .skill-category ul { font-size: 1rem; }
+  .contact-info { font-size: 1rem; }
+}
